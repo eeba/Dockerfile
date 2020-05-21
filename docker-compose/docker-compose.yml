@@ -1,0 +1,45 @@
+version: "2.0"
+services:
+    nginx:
+        image: nginx:latest
+        restart: always
+        environment:
+            - TZ=Asia/Shanghai
+            - NGINX_HOST=phphub.net
+        ports: 
+            - "80:80"
+            - "443:443"
+        volumes: 
+            - /data/nginx/conf:/etc/nginx/conf.d
+            - /data/nginx/logs:/data/nginx/logs
+            - /data/htdocs:/data/htdocs
+        links:
+            - "php"
+    php:
+        image: feesn/php-yaf:74
+        ports: 
+            - "9000:9000"
+        volumes: 
+            - /data/htdocs:/data/htdocs
+            - /data/php/php.ini:/usr/local/etc/php/php.ini
+        links:
+            - "mysql"
+            - "redis"
+        dns:
+            - 223.5.5.5
+            - 223.6.6.6
+    mysql:
+        image: mysql:5.7
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: 123456      
+        ports: 
+            - "3306:3306"
+        volumes: 
+            - /data/mysql:/var/lib/mysql
+    redis:
+        image: redis:5.0
+        ports: 
+            - "6379:6379"
+        volumes: 
+            - /data/redis:/data
