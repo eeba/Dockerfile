@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install --assume-yes \
 
 RUN docker-php-ext-install pdo_mysql bcmath pcntl sockets sysvsem xmlrpc xsl zip
 
-RUN pecl install redis-5.1.1 \
-    && pecl install yaf-3.0.9 \
+RUN pecl install redis-5.3.1 \
+    && pecl install yaf-3.2.5 \
     && pecl install imagick-3.4.4 \
     && docker-php-ext-enable redis yaf imagick

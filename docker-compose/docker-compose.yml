@@ -22,6 +22,7 @@ services:
         volumes: 
             - /data/htdocs:/data/htdocs
             - /data/php/php.ini:/usr/local/etc/php/php.ini
+            - /data/php/conf.d:/usr/local/etc/php/conf.d
         links:
             - "mysql"
             - "redis"
