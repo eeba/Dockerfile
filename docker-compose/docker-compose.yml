@@ -1,7 +1,7 @@
 version: "2.0"
 services:
     nginx:
-        image: nginx:latest
+        image: registry.cn-beijing.aliyuncs.com/feesn/nginx:latest
         restart: always
         environment:
             - TZ=Asia/Shanghai
@@ -16,7 +16,7 @@ services:
         links:
             - "php"
     php:
-        image: feesn/php-yaf:74
+        image: registry.cn-beijing.aliyuncs.com/feesn/php-yaf:latest
         ports: 
             - "9000:9000"
         volumes: 
@@ -30,7 +30,7 @@ services:
             - 223.5.5.5
             - 223.6.6.6
     mysql:
-        image: mysql:5.7
+        image: registry.cn-beijing.aliyuncs.com/feesn/mysql:latest
         restart: always
         environment:
             MYSQL_ROOT_PASSWORD: 123456      
@@ -39,7 +39,7 @@ services:
         volumes: 
             - /data/mysql:/var/lib/mysql
     redis:
-        image: redis:5.0
+        image: registry.cn-beijing.aliyuncs.com/feesn/redis:latest
         ports: 
             - "6379:6379"
         volumes: 
