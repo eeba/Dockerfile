@@ -1,6 +1,7 @@
-version: "2.0"
+version: "3"
 services:
     nginx:
+        container_name: nginx
         image: nginx:latest
         restart: always
         environment:
@@ -14,28 +15,27 @@ services:
             - /data/web/nginx/conf.d:/etc/nginx/conf.d
             - /data/web/nginx/logs:/data/nginx/logs
             - /data/web/htdocs:/data/htdocs
-        links:
-            - "php"
     php:
+        container_name: php
         image: feesn/php-yaf:7.4
         restart: always
         ports:
             - "9000:9000"
         volumes:
             - /data/web/htdocs:/data/htdocs
-        links:
-            - "mysql"
-            - "redis"
     mysql:
+        container_name: mysql
         image: mysql:5.7
         restart: always
         environment:
             MYSQL_ROOT_PASSWORD: 123456
+            TZ: Asia/Shanghai
         ports:
             - "3306:3306"
         volumes:
             - /data/web/mysql:/var/lib/mysql
     redis:
+        container_name: redis
         image: redis:5.0
         restart: always
         ports:
