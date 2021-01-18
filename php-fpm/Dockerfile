@@ -10,6 +10,9 @@ RUN apt-get update && apt-get install --assume-yes \
         libpng-dev \
         zip \
         unzip \
+        cron \
+        vim \
+        procps \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd \
     && rm -r /var/lib/apt/lists/* \
